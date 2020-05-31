@@ -25,17 +25,18 @@ while gameOver == False:
 	print("  a  b  c   d  e  f   g  h  i")
 	print()
 
+
+
 	#userInput = input("??? ").split()
 	#x, y = (ord(userInput[0][0]) - 97), (int(userInput[0][1]) - 1)
 	#i = int(userInput[-1])
+	input("run?")
+	newBoard.solve()
+	#x = random.randint(0, 8)
+	#y = random.randint(0, 8)
+	#i = random.randint(1, 9)
 
-	
-	x = random.randint(0, 8)
-	y = random.randint(0, 8)
-	i = random.randint(1, 9)
-	
-
-	if newBoard.insertValue((x, y), i) == True:
-		pass
-	else:
-		print("\nInvalid placement.")
+	#if newBoard.checkValidPlacement((x, y), i) == True:
+		#pass
+	#else:
+		#print("\nInvalid placement.")

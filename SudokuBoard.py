@@ -2,13 +2,13 @@ class SudokuBoard:
 
 	def __init__(self):
 		self.board = [
-		[0,0,0,0,0,0,0,0,0], #1
+		[1,0,0,0,0,0,0,0,0], #1
 		[0,0,0,0,0,0,0,0,0], #2
 		[0,0,0,0,0,0,0,0,0], #3
 		[0,0,0,0,0,0,0,0,0], #4
-		[0,0,0,0,0,0,0,0,0], #5
+		[0,0,0,0,0,7,0,0,0], #5
 		[0,0,0,0,0,0,0,0,0], #6
-		[0,0,0,0,0,0,0,0,0], #7
+		[0,0,2,0,0,0,0,0,0], #7
 		[0,0,0,0,0,0,0,0,0], #8
 		[0,0,0,0,0,0,0,0,0]  #9
 		]
@@ -26,8 +26,20 @@ class SudokuBoard:
 		[(6,6), (6,7), (6,8), (7,6), (7,7), (7,8), (8,6), (8,7), (8,8)]  #q9
 		]
 
+	def solve(self):
+		for y in range(0,9):
+			for x in range(0,9):
+				if self.board[y][x] == 0:
+					for i in range(1,10):
+						if self.checkValidPlacement((x, y), i):
+							self.board[y][x] = i
+							self.solve()
+							self.board[y][x] = 0
+					return
+		
+		
 
-	def insertValue(self, position, value):
+	def checkValidPlacement(self, position, value):
 		x = position[0]
 		y = position[1]
 
@@ -48,11 +60,9 @@ class SudokuBoard:
 
 		#Scan the quadrant
 		for i in range(len(self.currentQuad)):
-			print(self.board[self.currentQuad[i][1]][self.currentQuad[i][0]])
 			if value == self.board[self.currentQuad[i][1]][self.currentQuad[i][0]]:
 				return False
 				
-		self.board[y][x] = value
 		return True
 
 	def returnValue(self):
